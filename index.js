@@ -49,9 +49,9 @@ app.post('/api/books/', (request, responce) => {
 app.put('/api/books/:id', (request, responce) => {
     const {id} = request.params;
     const {title, description} = request.body;
-    const reqBook = books.find(book => book.id === id);
-    if (reqBook) {
-        reqBook === {
+    const reqBook = books.findIndex(book => book.id === id);
+    if (reqBook !== -1) {
+        books[reqBook] === {
             ...reqBook,
             title,
             description
@@ -77,7 +77,7 @@ app.delete('/api/books/:id', (request, responce) => {
 });
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 9000;
 
 app.listen(PORT, () => {
     console.log(`server listen ${PORT}`);
